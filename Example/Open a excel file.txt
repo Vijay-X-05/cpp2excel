@@ -1,0 +1,25 @@
+Code for Open a excel file
+
+#include <iostream>
+#include <cstdlib> // For system() function
+
+using namespace std;
+
+int main() {
+    // Path to the Excel file (Change this path to your actual file)
+    string filePath = "C:\\Users\\smart\\OneDrive\\Desktop\\new.xlsx";  
+
+    // Command to open Excel with the file
+    string command = "start excel \"" + filePath + "\"";
+
+    // Execute the command
+    int result = system(command.c_str());
+
+    if (result == 0) {
+        cout << "Excel file opened successfully!" << endl;
+    } else {
+        cout << "Failed to open Excel file!" << endl;
+    }
+
+    return 0;
+}

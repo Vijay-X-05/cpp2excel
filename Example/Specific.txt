@@ -1,0 +1,33 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+
+This is the code for access specific person data
+int main() {
+    std::ifstream file("data.csv"); // Open CSV file
+    if (!file) {
+        std::cerr << "Error: Unable to open file!" << std::endl;
+        return 1;
+    }
+
+    std::string line;
+    std::string targetName = "Alice"; // 🔍 Search for "Alice"
+
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::string name, age, city;
+        
+        std::getline(ss, name, ','); // Get name
+        std::getline(ss, age, ',');  // Get age
+        std::getline(ss, city, ','); // Get city
+
+        if (name == targetName) { // 🔹 If name matches, print age
+            std::cout << "Age of " << name << " is " << age << std::endl;
+            break;
+        }
+    }
+
+    file.close(); // Close file
+    return 0;
+}

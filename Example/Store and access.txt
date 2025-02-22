@@ -1,0 +1,40 @@
+Code for Store and access the data
+
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+
+int main() {
+    std::ifstream file("data.csv"); // Open the CSV file
+    if (!file) {
+        std::cerr << "Error: Unable to open file!" << std::endl;
+        return 1;
+    }
+
+    std::vector<std::vector<std::string>> data; // Store CSV data
+    std::string line;
+
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::string cell;
+        std::vector<std::string> row;
+
+        while (std::getline(ss, cell, ',')) {
+            row.push_back(cell);
+        }
+        data.push_back(row);
+    }
+
+    file.close(); // Close file
+
+    // 🔹 Access data by row & column (Example: Print second row)
+    std::cout << "Row 2 Data: ";
+    for (const auto& item : data[1]) {
+        std::cout << item << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}

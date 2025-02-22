@@ -1,0 +1,34 @@
+Code to Read Csv file
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+
+int main() {
+    std::ifstream file("data.csv"); // Open the CSV file
+    if (!file) {
+        std::cerr << "Error: Unable to open file!" << std::endl;
+        return 1;
+    }
+
+    std::string line;
+    
+    while (std::getline(file, line)) { // Read each line
+        std::stringstream ss(line);
+        std::string cell;
+        std::vector<std::string> row;
+
+        while (std::getline(ss, cell, ',')) { // Split by comma
+            row.push_back(cell);
+        }
+
+        // Access Data (Example: Print Name and Age)
+        if (row.size() >= 2) {
+            std::cout << "Name: " << row[0] << ", Age: " << row[1] << std::endl;
+        }
+    }
+
+    file.close(); // Close file
+    return 0;
+}
